@@ -4,7 +4,7 @@
   "authors": [
     "Anonymous <glamoree@randomminds.com>"
   ],
-  "description": "CapLnk Component for .......",
+  "description": "CapLnk Component for Marshaling data requests.",
   "keywords": "lnk-data, caplnk, polymer, web-components",
   "main": "lnk-data.html",
   "license": "LGPL V3",
