@@ -1,14 +1,14 @@
 {
-  "name": "lnk-data",
+  "name": "lnk-menu",
   "version": "0.1.0",
   "authors": [
     "Anonymous <glamoree@randomminds.com>"
   ],
-  "description": "CapLnk Component for Marshaling data requests.",
-  "keywords": "lnk-data, caplnk, polymer, web-components",
-  "main": "lnk-data.html",
+  "description": "CapLnk Component for a responsive menu system.",
+  "keywords": "lnk-menu, caplnk, polymer, web-components",
+  "main": "lnk-menu.html",
   "license": "LGPL V3",
-  "homepage": "https://github.com/CapLnk/lnk-data",
+  "homepage": "https://github.com/CapLnk/lnk-menu",
   "ignore": [
     "**/.*",
     "test",

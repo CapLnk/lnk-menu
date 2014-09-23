@@ -1,0 +1,298 @@
+/*
+LNK-MENU (lnk-menu.css) - CSS code for this CapLnk component.
+
+Copyright (C) 2014 by Gregory J Lamoree
+
+This file is part of the LNK-MENU component which is part of the
+CapLnk (Component - Application - Link) suite of components. 
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+/**** Main Layout */
+:host {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: inline;
+    background-color: white;
+    box-sizing: border-box;
+    text-align: center;
+    opacity: 1;
+    position: relative;
+    font-family: arial,sans-serif;
+    outline: 0;
+}
+:host, :host * {
+    box-sizing: border-box;
+}
+/**** Main Menu Heading */
+:host .menuHeading {
+    display: block;
+    xpointer-events: none;
+    border: thin solid black;
+    padding-top: .5em;
+    padding-bottom: .5em;
+}
+
+/**** Three Line Menu Icon */
+:host .menuHeading:after {
+    content:"";
+    position: absolute;
+    top: 0.5em;
+    left: .25em;
+    width: 1em;
+    height: 0.125em;
+    border-top: 0.375em double #000;
+    border-bottom: 0.125em solid #000;
+}
+
+/*** Menu and Sub Menu Base Styling */
+:host .menuItem, :host .menuContainer, :host .menuSubItem {
+    margin: 0;
+    padding: 0;
+    display: block;
+    background-color: white;
+    xoverflow: hidden;
+    height: 100%;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all    .2s ease-in-out;
+    -o-transition: all      .2s ease-in-out;
+    transition: all         .2s ease-in-out;
+    position: relative;
+    text-align: left;
+    pointer-events: initial;
+}
+
+:host .menuItemElement {
+    border: thin solid black;
+    pointer-events: none; /* ?????  */
+    //background-color: purple;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+:host .menuItemText {
+    color: black;
+    text-decoration: none;
+    width: calc(100% - 4em);
+    height: 100%;
+    display: inline-block;
+    cursor: pointer;
+    padding: .5em;
+}              
+
+/**** All Arrows */
+:host .menuItemElement > .menuItemDropdown {
+    position: relative;
+    height:0;
+    width: 0;
+    border: .5em solid transparent;
+    margin: .75em;
+    float: right;
+    pointer-events: none;
+}
+/**** Up Arrows */
+:host .menuItem[isopen] > .menuItemElement > .menuItemDropdown {
+    border-bottom-color: #aaa;
+    border-top-color: transparent;
+    pointer-events: none;
+}
+/**** Down Arrows */
+:host .menuItem:not([isopen]) > .menuItemElement > .menuItemDropdown {
+    border-top-color: #aaa;
+    border-bottom-color: transparent;
+    pointer-events: none;
+}
+
+/* Menu Close Animation */
+:host(:not([isopen])) > .menuContainer, :host .menuItem:not([isopen]) > .menuSubItem { 
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+/* Menu Open Animation */
+:host([isopen]) > .menuContainer, :host .menuItem[isopen] > .menuSubItem {
+    max-height: 60em;
+    opacity: 1;
+    xoverflow: visible;
+}
+/* Highlight Selected Menu Item */
+:host([isopen]) > .menuHeading:before, :host .menuItem[isopen] > .menuItemElement:before {
+    content: "";
+    background: rgba(0, 0, 0, 0.15);
+    pointer-events: none;
+    box-sizing: content-box;
+    width: calc(100% - 1px);
+    height: calc(100% - 1px);
+    display: block;
+    position: absolute; 
+    cursor: pointer;
+    xz-index: 300;
+    xmargin: -.5em;
+}
+/* Highlight Open Title Fix */
+:host([isopen]) > .menuHeading:before {
+    margin: -.5em;
+    margin-left: -1.25em;
+}
+
+:host([isopen]) > .menuHeading {
+    xwidth: calc(100% + .75em);
+    xleft: -.25em;
+}
+
+/***************************/
+/* Alternate Display Sizes */
+/***************************/
+/*
+‘min-width’ says ‘apply these styles to all screens that are greater than whatever value’.
+*/
+
+/* X-Small phone is the default and smallest */
+
+:host, :host .menuItemElement  {
+    width: 100%;
+}
+
+/* Main Layout */
+:host {
+    min-height: 3pc;
+    font-size: 1.5pc;
+    position: fixed;
+    max-height: 100%;
+    top: 0;
+    left: 0;
+    overflow: auto;
+}
+
+/* Show Title */
+:host .menuHeading {
+    min-height: 3pc;
+    padding-left: 1.25em; /*?*/
+    padding-right: 1.25em; /*?*/
+}
+
+/* Menu Lables */
+:host .menuItemText {
+    min-height: 3pc;
+}    
+
+/* Hide Menu Items */
+:host .menuContainer {
+    min-height: 0;
+    max-height: 0;
+    display: block;
+}
+
+
+
+@media all and (min-width: 44em) {
+    /* Main Layout */
+    :host {
+        margin: .5em;
+        /* float: {{(align == 'right') ? 'right' : 'left'}}; */
+        float: left;
+        position: relative;
+        width: auto;
+        overflow: visible;
+        padding-top: 0;
+        min-height: 1.5pc;
+        font-size: 1pc;
+        /* width: {{(align == 'center') ? '100%' : 'initial'}}; */
+        width: initial;
+    }
+
+    /* Because data binding doesn't work in the polyfill. */
+    :host([align='right']) {
+        float: right;
+    }
+    :host([align='center']) {
+        width: 100%;
+    }
+    /******************************************************/
+
+    /* Horizontal Menu */
+    :host([orientation='horizontal']) .menuItem {
+        float: left;
+        xclear: both;
+    }
+    :host([orientation='horizontal']) {
+        xwidth: 100%;
+        xclear: both;
+    }
+    :host .menuItemElement {
+        width: 15pc; /* Should this even be here? */
+    }
+
+    /* Hide Title */
+    :host .menuHeading {
+        min-height: 0;
+        max-height: 0;
+        padding: 0;
+        opacity: 0; /* display: none; ??? */
+    }    
+
+    /* Fix Height */
+    :host > .menuContainer {
+        opacity: 1;
+        min-height: 1.5pc;
+        max-height: initial;
+        display: inline-block;
+    }
+    /* Hide Menu Icon */
+    :host > .menuHeading:after {
+        display: none;
+    }
+    /* beginning of I DON'T KNOW  */
+    /* Overlay Content */
+    xpolyfill-next-selector { content: ':host([orientation=horizontal]) > ul > li > ul';}
+    :host([orientation='horizontal']) > .menuContainer > .menuItem > .menuSubItem{
+        position: absolute;
+        z-index: 100;
+
+    }
+
+    /* Menu Open Always*/
+    :host(:not([isopen])) > .menuContainer {
+        min-height: 1.5pc;
+        max-height: 60em;
+        opacity: 1;
+        overflow: visible;
+    }
+    :host .menuItemElement {
+        min-height: 2pc;
+    }    
+
+
+    /* Left Arrows */
+    x-abk-menu li[data-menuopen=true] :first-child:nth-last-child(2):after {
+        border-top-color: transparent;
+        border-bottom-color: transparent;
+        border-right-color: #aaa;
+        border-left-color: transparent;
+        pointer-events: none;
+    }
+
+    /* Right Arrows */
+    x-abk-menu li:not([data-menuopen=true]) :first-child:nth-last-child(2):after {
+        border-top-color: transparent;
+        border-bottom-color: transparent;
+        border-left-color: #aaa;
+        border-right-color: transparent;
+        pointer-events: none;
+    }
+
+}

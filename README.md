@@ -1,7 +1,7 @@
-LNK-DATA
+LNK-MENU
 ================
 
-See the LNK-DATA (http://polymerlabs.github.io/lnk-data) for more information.
+See the LNK-MENU (http://polymerlabs.github.io/lnk-menu) for more information.
 
 ## Getting Started
 

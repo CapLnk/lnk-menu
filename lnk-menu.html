@@ -1,0 +1,67 @@
+<!--
+LNK-MENU (lnk-menu.html) - HTML code for this CapLnk component.
+
+Copyright (C) 2014 by Gregory J Lamoree
+
+This file is part of the LNK-MENU component which is part of the
+CapLnk (Component - Application - Link) suite of components. 
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+    Element providing solution to no problem in particular.
+    
+    ##### Example
+    
+        <lnk-menu></lnk-menu>
+    
+    @element lnk-menu
+    @blurb Element providing solution to no problem in particular.
+    @status alpha
+    @homepage http://polymerlabs.github.io/lnk-menu
+-->
+<polymer-element name="lnk-menu" attributes="orientation heading isopen align items" tabindex="-1" unresolved>
+    <template>  
+        <link rel="stylesheet" href="lnk-menu.css" />
+        <lnk-media></lnk-media>
+        <lnk-data id="lnkData" datasource="{{items}}" dataresponse="{{itemsObject}}"></lnk-data>
+        <span class="menuHeading" on-click="{{menuOpenClose}}" >{{heading}}</span>
+        <span class="menuContainer">
+            <template repeat="{{item in itemsObject.menuItems.items}}" id="menuItemTemplate">
+                <div class="menuItem" on-click="{{menuOpenClose}}" >
+                    <span class="menuItemElement">
+                        <template if="{{item.href}}">
+                            <a class="menuItemLink menuItemText" href="{{item.href}}">{{item.label}}</a>
+                        </template>
+                        <template if="{{!item.href}}">
+                            <span class="menuItemLabel menuItemText">{{item.label}}</span>
+                        </template>
+                        <template if="{{item.items}}">
+                            <span class="menuItemDropdown"></span>
+                        </template>
+                    </span>
+                    <span class="menuSubItem">
+                        <template ref="menuItemTemplate" repeat="{{item in item.items}}"></template>
+                    </span>
+                </div>
+            </template>
+            <content></content>
+        </span>
+    </template>
+
+  <script src="lnk-menu.js"></script>
+
+</polymer-element>
